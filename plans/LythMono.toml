@@ -1,0 +1,187 @@
+family = "Lyth Mono"
+spacing = "normal"
+serifs = "sans"
+noCvSs = true
+exportGlyphNames = false
+buildTextureFeature = true
+
+[variants.design]
+one = "no-base"
+two = "straight-neck-serifless"
+three = "flat-top-serifless"
+four = "semi-open-serifless"
+five = "oblique-flat-serifless"
+six = "open-contour"
+seven = "straight-serifless-crossbar"
+eight = "two-circles"
+nine = "open-contour"
+zero = "dotted"
+capital-a = "straight-serifless"
+capital-b = "standard-serifless"
+capital-c = "serifless"
+capital-d = "standard-serifless"
+capital-e = "serifless"
+capital-f = "serifless"
+capital-g = "toothless-corner-serifless-hooked"
+capital-h = "serifless"
+capital-i = "serifed"
+capital-j = "serifless"
+capital-k = "symmetric-connected-serifless"
+capital-l = "serifless"
+capital-m = "hanging-serifless"
+capital-n = "standard-serifless"
+capital-p = "closed-serifless"
+capital-q = "crossing"
+capital-r = "standing-serifless"
+capital-s = "serifless"
+capital-t = "serifless"
+capital-u = "toothless-rounded-serifless"
+capital-v = "straight-serifless"
+capital-w = "straight-flat-top-serifless"
+capital-x = "straight-serifless"
+capital-y = "straight-serifless"
+capital-z = "straight-serifless"
+a = "double-storey-serifless"
+b = "toothed-serifless"
+c = "serifless"
+d = "toothed-serifless"
+e = "flat-crossbar"
+f = "flat-hook-serifless"
+g = "single-storey-serifless"
+h = "straight-serifless"
+i = "serifed"
+j = "flat-hook-serifed"
+k = "symmetric-connected-serifless"
+l = "serifed-semi-tailed"
+m = "serifless"
+n = "straight-serifless"
+p = "eared-serifless"
+q = "straight-serifless"
+r = "serifless"
+s = "serifless"
+t = "flat-hook-short-neck2"
+u = "toothed-serifless"
+v = "straight-serifless"
+w = "straight-flat-top-serifless"
+x = "straight-serifless"
+y = "straight-serifless"
+z = "straight-serifless"
+lower-theta = "oval"
+tittle = "square"
+diacritic-dot = "square"
+punctuation-dot = "square"
+braille-dot = "square"
+tilde = "low"
+asterisk = "penta-mid"
+underscore = "high"
+caret = "medium"
+ascii-grave = "straight"
+ascii-single-quote = "straight"
+paren = "normal"
+brace = "curly"
+guillemet = "straight"
+number-sign = "slanted"
+ampersand = "closed"
+at = "fourfold"
+dollar = "through"
+cent = "through-cap"
+percent = "rings-continuous-slash"
+bar = "natural-slope"
+question = "corner"
+pilcrow = "high"
+micro-sign = "toothed-serifless"
+decorative-angle-brackets = "middle"
+lig-ltgteq = "slanted"
+lig-neq = "slightly-slanted"
+lig-equal-chain = "without-notch"
+lig-hyphen-chain = "without-notch"
+lig-plus-chain = "without-notch"
+lig-double-arrow-bar = "without-notch"
+lig-single-arrow-bar = "without-notch"
+
+[ligations]
+inherits = "default-calt"
+enables = [
+    "eqeqeq", # Triple-line equality ligation
+    "exeqeq", # Triple-line inequality ligation
+]
+
+[weights.Light]
+shape = 320
+menu = 300
+css = 300
+
+[weights.Regular]
+shape = 415
+menu = 400
+css = 400
+
+[weights.Medium]
+shape = 510
+menu = 500
+css = 500
+
+[weights.Bold]
+shape = 700
+menu = 700
+css = 700
+
+[widths.Normal]
+# With the metricOverride heights, I'm kinda sorta aiming at a slightly larger actual font size
+# (but not as large as going up half a step like 12 to 12.5 pt), so the width is also a bit larger,
+# which to me seems to balance it out a bit.
+shape = 604
+menu = 5
+css = "normal"
+
+[slopes.Upright]
+angle = 0
+shape = "upright"
+menu = "upright"
+css = "normal"
+
+[slopes.Italic]
+angle = 9.5
+shape = "italic"
+menu = "italic"
+css = "italic"
+
+[metricOverride]
+xHeight = 540
+cap = 720
+ascender = 735
+sb = 'blend(weight, [400, 90], [700, 78])'
+
+accentWidth = 200
+accentClearance = 80
+accentHeight = 170
+accentStackOffset = 208
+
+# From my experience on macOS, different editors seem to treat leading differently:
+# - some ignore it altogether (e.g. VS Code)
+# - others seem to react to changing leading in steps (e.g. Xcode, where nothing happens until it crosses a
+#   certain threshold where it suddenly becomes way tighter or way more relaxed).
+# Leading also affects how text selection is rendered (too much leading -> text sits too on low in selection background).
+# This value seemed a decent compromise for the set of apps I'm using and my preferences, YMMV.
+leading = 1170
+parenSize = 950
+# Using defaults for dotSize, but we could do something like this:
+# dotSize = 'blend(weight, [100, 120], [400, 135], [900, 170])'
+periodSize = 150
+
+essRatio = 1.03
+essRatioUpper = 1.03
+essRatioLower = 1.03
+essRatioQuestion = 1.03
+
+# These basically define the squareness/roundness of the character shapes.
+# Default iosevka is around 200, while 160 gets us to Berkeley Mono territory.
+archDepth = 185
+smallArchDepth = 190
+
+[namingOverride]
+copyright = "Copyright 2015-2026, Renzhi Li (aka. Belleve Invis, belleve@typeof.net). Build configuration (c) 2026, Yuri Turov"
+description = "Lyth Mono is a custom build of Iosevka, a monospace font family for programming. http://github.com/why-trv/LythMono, http://be5invis.github.io/Iosevka"
+manufacturer = "Belleve Invis, Yuri Turov"
+designer = "Belleve Invis, Yuri Turov"
+version = "0.9.0"

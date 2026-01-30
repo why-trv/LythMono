@@ -1,0 +1,13 @@
+{
+  "name": "lyth-mono",
+  "type": "module",
+  "scripts": {
+    "postinstall": "cd Iosevka && npm i",
+    "build": "./scripts/build.sh",
+    "install-fonts": "./scripts/install-fonts.sh",
+    "clean": "./scripts/clean.sh"
+  },
+  "dependencies": {
+    "smol-toml": "^1.3.1"
+  }
+}

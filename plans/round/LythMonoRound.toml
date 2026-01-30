@@ -1,0 +1,7 @@
+basePlan = "LythMono"
+
+family = "Lyth Mono Round"
+
+[metricOverride]
+archDepth = 205
+smallArchDepth = 210
