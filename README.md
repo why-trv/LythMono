@@ -1,0 +1,115 @@
+# Lyth Mono
+
+**Lyth Mono** is an attempt at my 'dream' programming font. Technically, it's a custom build of [Iosevka](https://github.com/be5invis/Iosevka) with metric overrides and an opinionated selection of glyphs.
+
+<img src="https://github.com/why-trv/LythMono/blob/assets/assets/lyth-mono.png?raw=true" alt="Lyth Mono sample" width="830"/>
+
+## Design Goals
+
+A 'technical'-feeling monospaced neo-grotesque for programming, i.e.:
+- somewhat square-ish, but not too much,
+- simple shapes, but not too geometric-y,
+- decently legible at 12–13 pt,
+- all the usual programming font concerns like `O08`, `iIl1` etc.
+
+Here is an animated GIF comparison to a couple of other fonts in a similar style: [**Ioskeley Mono**](https://github.com/ahatem/IoskeleyMono) (also a custom Iosevka build, targeting the look and feel of [**Berkeley Mono**](https://usgraphics.com/products/berkeley-mono)) and [**JetBrains Mono**](https://github.com/JetBrains/JetBrainsMono):
+
+<img src="https://github.com/why-trv/LythMono/blob/assets/assets/lyth-ioskeley-jetbrains-mono.gif?raw=true" alt="Lyth Mono vs Ioskeley Mono vs JetBrains Mono" width="830"/>
+
+## Building from Source
+
+### Prerequisites
+
+Iosevka requires [**Node.js**](https://nodejs.org/en/download) 20+ and [**ttfautohint**](https://freetype.org/ttfautohint/#download) to build. The former provides a bunch of options to choose from on its website, while for the latter the easiest way is likely to use a package manager of your choice (e.g. `brew install ttfautohint` on macOS).
+I guess you don't need `ttfautohint` if you're going to build only unhinted versions of the fonts.
+
+### TL;DR
+
+```
+git clone --recursive --shallow-submodules https://github.com/why-trv/LythMono.git
+npm install
+npm run build
+```
+
+The built fonts will be in `dist/`.
+
+On macOS and Linux you can also run
+```
+npm run install-fonts
+```
+to automatically install TTFs to the user fonts directory.
+
+### Detailed Instructions
+
+#### 1. Clone this Repository
+
+```
+git clone --recursive --shallow-submodules https://github.com/why-trv/LythMono.git
+```
+
+Iosevka's full git history is very heavy (tens of GB), so it's really really recommended to do a shallow clone of the Iosevka submodule (`--shallow-submodules`).
+
+#### 2. Install Dependencies
+
+```
+npm install
+```
+
+#### 3. Build
+
+```
+npm run build [-- [format | target...] [--ts [--keep-old]]]
+```
+- `format` is the font format option to be forwarded to the Iosevka build system:
+    - `contents` (all formats, default)
+    - `ttf` (TTF, hinted + unhinted)
+    - `ttf-unhinted` (TTF, unhinted)
+    - `webfont` (CSS + WOFF2)
+    - `webfont-unhinted`
+    - `woff2` (WOFF2 only)
+    - `woff2-unhinted`
+- `target...` - space-separated pairs of format and font build plan names, e.g. `contents::LythMono ttf::LythMonoTerm`.
+
+Use the latter to specify specific fonts (build plans) to build. Otherwise, if only `format`, or neither `format` nor `target...` is specified, the script will build all plans in the `plans/` directory.
+
+- `--ts` automatically appends a timestamp to the font family name (and consequently, the directory and font file names). This can be handy when iterating on a design to bypass font cache issues on macOS, or just to keep multiple iterations installed (see `--keep-old`).
+- `--keep-old` prevents the build script from automatically removing older timestamped versions of the font.
+
+When the build finishes, font files will be available in `dist/` (symlinked to `Iosevka/dist/`)
+
+##### Examples:
+```
+npm run build -- ttf --ts
+```
+builds a timestamp-versioned TTF and deletes the previously existing timestamped versions of the font.
+
+```
+npm run build -- contents::LythMono ttf::LythMonoTerm
+```
+builds a normal (non-timestamp-versioned) `LythMono` in all formats and `LythMonoTerm` in hinted and unhinted TTF.
+
+#### 4. Install Font Files
+
+You can install the built font files manually, or, for TTF, you also have the option of running this:
+```
+npm run install-fonts [-- [--unhinted] [--keep-old]]
+```
+to copy all font files from `dist/` to your user font directory (`~/Library/Fonts` on macOS, `~/.local/share/fonts` on Linux).
+
+Options:
+- `--unhinted` - copy the unhinted version of the fonts, otherwise defaults to hinted.
+- `--keep-old` - for timestamped builds, don't delete existing timestamped files.
+- `--clipboard` - copy family names to clipboard for recall via clipboard manager (macOS only, requires `fontconfig`, which should be already installed as a dependency of `ttfautohint`).
+
+## Build Customization
+
+You can tweak and add font configurations by modifying `.toml` files in `plans/`.
+
+In general, please refer to Iosevka's [Customized Build](https://github.com/be5invis/Iosevka/blob/main/doc/custom-build.md#customized-build) section for details on available parameters, since the Lyth Mono build system is working on top of Iosevka's.
+
+However, keep in mind the following:
+- Any single file in `plans/` defines one and only one build plan.
+- `buildPlan.<plan-name>` prefixes are omitted and plan name is derived from the file name.
+- You should be able to use `inherits` keys of vanilla Iosevka where it allows, but this is somewhat limiting and verbose, so instead of defining the whole plan, you can define a base build plan (e.g. `basePlan = "LythMono"`) and the keys to override (see `LythMonoTerm.toml` for example).
+
+The build script processes and gathers all build plans in `Iosevka/private-build-plans.toml` and hands it off to Iosevka to build.
