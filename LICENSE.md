@@ -1,4 +1,5 @@
 Copyright (c) 2015-2026, Renzhi Li (aka. Belleve Invis, belleve@typeof.net)
+
 Build configuration (c) 2026, Yuri Turov
 
 This Font Software is licensed under the SIL Open Font License, Version 1.1.
