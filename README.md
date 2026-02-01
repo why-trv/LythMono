@@ -1,4 +1,10 @@
-# Lyth Mono
+<h1 align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/why-trv/LythMono/blob/assets/assets/lyth-mono-title-dark-mode.svg?raw=true">
+    <source media="(prefers-color-scheme: light)" srcset="https://github.com/why-trv/LythMono/blob/assets/assets/lyth-mono-title-light-mode.svg?raw=true">
+    <img alt="Lyth Mono" src="https://github.com/why-trv/LythMono/blob/assets/assets/lyth-mono-title-light-mode.svg?raw=true">
+  </picture>
+</h1>
 
 **Lyth Mono** is an attempt at my 'dream' programming font. Technically, it's a custom build of [Iosevka](https://github.com/be5invis/Iosevka) with metric overrides and an opinionated selection of glyphs.
 
