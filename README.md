@@ -4,15 +4,21 @@
 
 <img src="https://github.com/why-trv/LythMono/blob/assets/assets/lyth-mono.png?raw=true" alt="Lyth Mono sample" width="830"/>
 
-## Design Goals
+## Why?
 
-A 'technical'-feeling monospaced neo-grotesque for programming, i.e.:
+I have a soft spot for industrial neo-grotesque designs like DIN, but, to my surprise, I haven't seen many coding fonts in this style and none that would tick all the boxes for me.
+
+In a nutshell:
 - somewhat square-ish, but not too much,
-- simple shapes, but not too geometric-y,
+- simple shapes, minimal usage of tails and serifs, but not too geometric-y,
 - decently legible at 12–13 pt,
 - all the usual programming font concerns like `O08`, `iIl1` etc.
 
-Here is an animated GIF comparison to a couple of other fonts in a similar style: [**Ioskeley Mono**](https://github.com/ahatem/IoskeleyMono) (also a custom Iosevka build, targeting the look and feel of [**Berkeley Mono**](https://usgraphics.com/products/berkeley-mono)) and [**JetBrains Mono**](https://github.com/JetBrains/JetBrainsMono):
+There are a couple of notable fonts that caught my attention in recent years, namely [**JetBrains Mono**](https://github.com/JetBrains/JetBrainsMono) and [**Berkeley Mono**](https://usgraphics.com/products/berkeley-mono) (as well as its Iosevka-based lookalike, [**Ioskeley Mono**](https://github.com/ahatem/IoskeleyMono)). Those are gorgeous fonts, but still I've managed to find my gripes with them:
+- JetBrains Mono is very legible and functional, but I wish it was less condensed and geometric-y.
+- Berkeley Mono looks cool, especially in the larger sizes it's presented at, but I feel legibility is compromised at smaller sizes — all characters begin looking like squares.
+
+Here is an animated GIF comparing **Lyth Mono** to **Ioskeley Mono** and **JetBrains Mono**:
 
 <img src="https://github.com/why-trv/LythMono/blob/assets/assets/lyth-ioskeley-jetbrains-mono.gif?raw=true" alt="Lyth Mono vs Ioskeley Mono vs JetBrains Mono" width="830"/>
 
