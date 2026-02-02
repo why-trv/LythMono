@@ -28,6 +28,8 @@ Here is an animated GIF comparing **Lyth Mono** to **Ioskeley Mono** and **JetBr
 
 <img src="https://github.com/why-trv/LythMono/blob/assets/assets/lyth-ioskeley-jetbrains-mono.gif?raw=true" alt="Lyth Mono vs Ioskeley Mono vs JetBrains Mono" width="830"/>
 
+Lyth Mono is available at [programmingfonts.org](https://www.programmingfonts.org/#lyth-mono) for a quick test drive alongside your current favorite font.
+
 ## Variations
 
 ### Term
