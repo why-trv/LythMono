@@ -44,6 +44,10 @@ In addition to the default configuration, there are extra Square and Round versi
 
 This repository provides both 'vanilla' and [Nerd Fonts](https://github.com/ryanoasis/nerd-fonts)–patched versions of the fonts.
 
+Caveats:
+- The patcher PascalCases the original font family names, e.g. `LythMonoTermRound Nerd Font` instead of `Lyth Mono Term Round`.
+- The patcher messed with leading (line height) in some way, so you may need to adjust it in your terminal emulator.
+
 <img src="https://github.com/why-trv/LythMono/blob/assets/assets/lyth-mono-normal-round-square.gif?raw=true" alt="Lyth Mono vs Lyth Mono Round vs Lyth Mono Square" width="830"/>
 
 ## Installation
