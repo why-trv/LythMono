@@ -40,6 +40,10 @@ Lyth Mono comes in `normal` (no postfix) and `term` (Term) versions. The latter 
 
 In addition to the default configuration, there are extra Square and Round versions that modify the arc curvature to appear more 'squared' or 'rounded'. This is mostly apparent with characters like `o`, `c`, `e` etc. The difference is rather subtle and, since proportions are otherwise the same, may be more of a 'feel' than a 'look' thing.
 
+### Nerd Fonts
+
+This repository provides both 'vanilla' and [Nerd Fonts](https://github.com/ryanoasis/nerd-fonts)–patched versions of the fonts.
+
 <img src="https://github.com/why-trv/LythMono/blob/assets/assets/lyth-mono-normal-round-square.gif?raw=true" alt="Lyth Mono vs Lyth Mono Round vs Lyth Mono Square" width="830"/>
 
 ## Installation
@@ -75,6 +79,11 @@ npm run build
 ```
 
 The built fonts will be in `dist/`.
+
+If you want Nerd Font icons, run this after the build:
+```
+npm run patch-nerdfonts
+```
 
 On macOS and Linux you can also run
 ```
@@ -131,7 +140,24 @@ npm run build -- contents::LythMono ttf::LythMonoTerm
 ```
 builds a normal (non-timestamp-versioned) `LythMono` in all formats and `LythMonoTerm` in hinted and unhinted TTF.
 
-##### 4. Install Font Files
+##### 4. Patch Nerd Fonts (Optional)
+
+To patch the built fonts with Nerd Font icons, run
+```
+npm run patch-nerdfonts [-- [--hinted] [--unhinted]]
+```
+
+This will patch all TTF fonts in `dist/`. Patching takes quite a while, so it's recommended you don't build any font variants you aren't going to need.
+
+If no flags are passed, the script will default to patching only the hinted versions of the fonts. If the hinted font directory is not there, it will fallback to patching the unhinted versions.
+
+For more control, use these flags:
+- `--hinted` - patch hinted versions of fonts,
+- `--unhinted` - patch unhinted versions of the fonts.
+
+Pass both flags to patch both hinted and unhinted versions.
+
+##### 5. Install Font Files
 
 You can install the built font files manually, or, for TTF, you also have the option of running this:
 ```

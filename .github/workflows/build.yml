@@ -25,16 +25,19 @@ jobs:
           node-version: 'lts/*'
           cache: 'npm'
 
-      - name: Install ttfautohint
+      - name: Install ttfautohint and fontforge
         run: |
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends ttfautohint
+          sudo apt-get install -y --no-install-recommends ttfautohint fontforge
 
       - name: Install dependencies
         run: npm install
 
       - name: Build fonts
         run: npm run build
+
+      - name: Patch Nerd Fonts
+        run: npm run patch-nerdfonts -- --hinted --unhinted
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v6

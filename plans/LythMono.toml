@@ -184,4 +184,4 @@ copyright = "Copyright 2015-2026, Renzhi Li (aka. Belleve Invis, belleve@typeof.
 description = "Lyth Mono is a custom build of Iosevka, a monospace font family for programming. http://github.com/why-trv/LythMono, http://be5invis.github.io/Iosevka"
 manufacturer = "Belleve Invis, Yuri Turov"
 designer = "Belleve Invis, Yuri Turov"
-version = "0.9.0"
+version = "0.10.0"

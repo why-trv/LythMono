@@ -4,6 +4,7 @@
   "scripts": {
     "postinstall": "cd Iosevka && npm i",
     "build": "./scripts/build.sh",
+    "patch-nerdfonts": "./scripts/patch-nerdfonts.sh",
     "install-fonts": "./scripts/install-fonts.sh",
     "clean": "./scripts/clean.sh"
   },
