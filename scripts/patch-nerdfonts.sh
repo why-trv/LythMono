@@ -8,15 +8,18 @@ PATCHER="$NERDFONTS_DIR/font-patcher"
 
 DO_HINTED=false
 DO_UNHINTED=false
+MAX_JOBS=$(nproc 2>/dev/null || sysctl -n hw.ncpu 2>/dev/null || echo 4)
 
 for arg in "$@"; do
   case $arg in
     --hinted) DO_HINTED=true ;;
     --unhinted) DO_UNHINTED=true ;;
+    -j=*|--jobs=*) MAX_JOBS="${arg#*=}" ;;
     --help|-h)
-      echo "Usage: $0 [--hinted] [--unhinted]"
+      echo "Usage: $0 [--hinted] [--unhinted] [-j=N|--jobs=N]"
       echo "  --hinted    Patch TTF (hinted) fonts"
       echo "  --unhinted  Patch TTF-Unhinted fonts"
+      echo "  -j=N        Run N jobs in parallel (default: number of CPU cores)"
       echo "  Both flags can be passed to patch both variants"
       echo "  If no flags: patch hinted if available, otherwise unhinted"
       exit 0 ;;
@@ -55,11 +58,10 @@ TTF_SUBDIRS=()
 [ "$DO_HINTED" = true ] && TTF_SUBDIRS+=("TTF")
 [ "$DO_UNHINTED" = true ] && TTF_SUBDIRS+=("TTF-Unhinted")
 
-# Find all font family directories (non-NerdFont ones)
+# Collect all patch jobs
+declare -a JOBS
 for family_dir in "$DIST_DIR"/*/; do
   family_name=$(basename "$family_dir")
-
-  # Skip if already a NerdFont variant
   [[ "$family_name" == *NerdFont* ]] && continue
 
   nf_family_name="${family_name}NerdFont"
@@ -67,23 +69,27 @@ for family_dir in "$DIST_DIR"/*/; do
 
   for ttf_subdir in "${TTF_SUBDIRS[@]}"; do
     [ ! -d "$family_dir/$ttf_subdir" ] && continue
-
     nf_ttf_dir="$nf_family_dir/$ttf_subdir"
-    echo "Patching $family_name/$ttf_subdir -> $nf_family_name/$ttf_subdir"
     mkdir -p "$nf_ttf_dir"
 
     for ttf in "$family_dir/$ttf_subdir"/*.ttf; do
       [ ! -f "$ttf" ] && continue
-
-      filename=$(basename "$ttf")
-      echo "  Patching $filename..."
-
-      fontforge -script "$PATCHER" \
-        --complete --careful \
-        -out "$nf_ttf_dir" \
-        "$ttf"
+      JOBS+=("$ttf|$nf_ttf_dir")
     done
   done
 done
+
+TOTAL=${#JOBS[@]}
+echo "Patching $TOTAL fonts with up to $MAX_JOBS parallel jobs..."
+
+# Run jobs in parallel using xargs
+printf '%s\n' "${JOBS[@]}" | xargs -P "$MAX_JOBS" -I {} bash -c '
+  job="$1"
+  ttf="${job%%|*}"
+  out_dir="${job##*|}"
+  filename=$(basename "$ttf")
+  echo "  Patching $filename..."
+  fontforge -script "'"$PATCHER"'" --complete --careful -out "$out_dir" "$ttf" >/dev/null 2>&1
+' _ {}
 
 echo "Nerd Font patching complete!"
