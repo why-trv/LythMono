@@ -48,7 +48,7 @@ This repository provides both 'vanilla' and [Nerd Fonts](https://github.com/ryan
 
 Caveats:
 - The patcher PascalCases the original font family names, e.g. `LythMonoTermRound Nerd Font` instead of `Lyth Mono Term Round`.
-- The patcher messed with leading (line height) in some way, so you may need to adjust it in your terminal emulator.
+- The patcher messes with leading (line height) in some way, so you may need to adjust it in your terminal emulator.
 
 ## Installation
 
