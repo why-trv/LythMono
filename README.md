@@ -67,6 +67,8 @@ If you want to tweak the font configurations (aka build plans) in some way (e.g.
 3. Commit and push your changes. A push to the `main` branch will run a workflow to build the fonts.
 4. Head over to [**Actions**](../../actions), wait for the workflow to complete and find the built fonts archive in the **Artifacts** section.
 
+The downside is, since it builds all font formats and variants (normal / square / round, hinted / unhinted etc.) and patches all of them with Nerd Fonts, it takes 30+ minutes to complete.
+
 ### Building from Source Locally
 
 #### Prerequisites
