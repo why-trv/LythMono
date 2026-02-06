@@ -156,7 +156,7 @@ builds a normal (non-timestamp-versioned) `LythMono` in all formats and `LythMon
 
 To patch the built fonts with Nerd Font icons, run
 ```
-npm run patch-nerdfonts [-- [--hinted] [--unhinted]]
+npm run patch-nerdfonts [-- [--hinted] [--unhinted] [-j=N | --jobs=N]]
 ```
 
 This will patch all TTF fonts in `dist/`. Patching takes quite a while, so it's recommended you don't build any font variants you aren't going to need.
@@ -168,6 +168,8 @@ For more control, use these flags:
 - `--unhinted` - patch unhinted versions of the fonts.
 
 Pass both flags to patch both hinted and unhinted versions.
+
+`-j=N` or `--jobs=N` makes N font patching jobs run in parallel (default: number of CPU cores).
 
 ##### 5. Install Font Files
 
