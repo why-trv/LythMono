@@ -144,6 +144,13 @@ Options:
 - `--keep-old` - for timestamped builds, don't delete existing timestamped files.
 - `--clipboard` - copy family names to clipboard for recall via clipboard manager (macOS only, requires `fontconfig`, which should be already installed as a dependency of `ttfautohint`).
 
+#### (Cleanup)
+
+```
+npm run clean
+```
+will delete the `dist/` symlink and `Iosevka/dist/` where the built font files are located.
+
 ### Build Customization
 
 You can tweak and add font configurations by modifying `.toml` files in `plans/`.
