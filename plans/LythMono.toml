@@ -2,7 +2,7 @@ family = "Lyth Mono"
 spacing = "normal"
 serifs = "sans"
 noCvSs = true
-exportGlyphNames = false
+exportGlyphNames = true
 buildTextureFeature = true
 
 [variants.design]
